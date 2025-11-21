@@ -1,0 +1,19 @@
+syntax = "proto3";
+
+package catalogo_autores;
+
+service AutorService {
+  rpc GetInfosAutor (AutorRequest) returns (AutorResponse);
+}
+
+message AutorRequest {
+  string livro_id = 1;
+}
+
+// 2. Mensagem de Response para o Serviço B
+message AutorResponse {
+  string nome_autor = 1;
+  int32 idade_autor = 2;
+  string nacionalidade = 3;
+  repeated string obras_conhecidas = 4; // Use 'repeated' para listas de strings
+}
