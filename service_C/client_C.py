@@ -75,7 +75,7 @@ def chamar_servico_B(livro_id: str):
 # 2. Endpoint REST (Agregação Final)
 # -----------------------------------------------
 
-@app.get("/infos-sincronas-livro/{livro_id}")
+@app.get("/all-infos-livro/{livro_id}")
 async def get_dados_sincronos(livro_id: str):
     
     # 1. Chamada Síncrona para A e B (idealmente, feita em paralelo para otimizar tempo)
