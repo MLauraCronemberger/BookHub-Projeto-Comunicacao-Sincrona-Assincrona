@@ -1,9 +1,13 @@
 package com.example.demo;
 
 import org.springframework.amqp.core.Queue;
+import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+
+import com.rabbitmq.client.ConnectionFactory;
+
 
 
 @Configuration
@@ -19,6 +23,5 @@ public class RabbitMQConfig {
         // O valor 'true' indica que a fila é durável (permanece após reinicialização do RabbitMQ).
         return new Queue(queueName, true); 
     }
-
-
+    
 }
