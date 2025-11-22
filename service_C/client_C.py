@@ -22,7 +22,32 @@ app = FastAPI(title="Serviço C - Orquestrador Síncrono")
 # 1. Clientes gRPC
 # -----------------------------------------------
 
-def chamar_servico_A(livro_id: str):
+def chamar_servico_A_find_all():
+    """ Chamada gRPC ao Servidor A para obter todos os livros (resumo: id + título) """
+    try:
+        with grpc.insecure_channel(ENDERECO_A) as channel:
+            stub = catalogo_pb2_grpc.InfosLivroServiceStub(channel)
+            request = catalogo_pb2.EmptyRequest()  # request vazio
+            response = stub.FindAll(request)
+
+            livros = []
+            for livro in response.livros:
+                livros.append({
+                    "livro_id": livro.livro_id,
+                    "titulo": livro.titulo
+                })
+
+            return livros
+
+    except grpc.RpcError as e:
+        details = e.details() if e.details() else "Erro desconhecido na comunicação gRPC com A."
+        print(f"Erro A FindAll: {details}")
+        if e.code() == grpc.StatusCode.NOT_FOUND:
+            return {"erro": details, "status_code": 404}
+        return {"erro": "Erro interno no Serviço A", "status_code": 500}
+
+
+def chamar_servico_A(livro_id: int):
     """ Chamada gRPC ao Servidor A (Metadados do Livro) """
     try:
         with grpc.insecure_channel(ENDERECO_A) as channel:
@@ -75,8 +100,18 @@ def chamar_servico_B(livro_id: str):
 # 2. Endpoint REST (Agregação Final)
 # -----------------------------------------------
 
-@app.get("/all-infos-livro/{livro_id}")
-async def get_dados_sincronos(livro_id: str):
+@app.get("/all-livros")
+async def get_lista_livros():
+    lista_livros = chamar_servico_A_find_all()
+
+    if "erro" in lista_livros:
+        raise HTTPException(status_code=lista_livros["status_code"], detail=lista_livros["erro"])
+    
+    return lista_livros
+
+
+@app.get("/infos-livro/{livro_id}")
+async def get_dados_sincronos(livro_id: int):
     
     # 1. Chamada Síncrona para A e B (idealmente, feita em paralelo para otimizar tempo)
     dados_a = chamar_servico_A(livro_id)

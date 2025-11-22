@@ -24,17 +24,23 @@ _sym_db = _symbol_database.Default()
 
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x0e\x63\x61talogo.proto\x12\x08\x63\x61talogo\" \n\x0cLivroRequest\x12\x10\n\x08livro_id\x18\x01 \x01(\t\"q\n\rInfosResponse\x12\x0e\n\x06titulo\x18\x01 \x01(\t\x12\x0e\n\x06genero\x18\x02 \x01(\t\x12\x0f\n\x07sinopse\x18\x03 \x01(\t\x12\x16\n\x0e\x61no_lancamento\x18\x04 \x01(\x05\x12\x17\n\x0fidioma_original\x18\x05 \x01(\t2U\n\x11InfosLivroService\x12@\n\rGetInfosLivro\x12\x16.catalogo.LivroRequest\x1a\x17.catalogo.InfosResponseb\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x0e\x63\x61talogo.proto\x12\x08\x63\x61talogo\"\x0e\n\x0c\x45mptyRequest\"/\n\x0bLivroResumo\x12\x10\n\x08livro_id\x18\x01 \x01(\x05\x12\x0e\n\x06titulo\x18\x02 \x01(\t\"8\n\x0f\x46indAllResponse\x12%\n\x06livros\x18\x01 \x03(\x0b\x32\x15.catalogo.LivroResumo\" \n\x0cLivroRequest\x12\x10\n\x08livro_id\x18\x01 \x01(\x05\"q\n\rInfosResponse\x12\x0e\n\x06titulo\x18\x01 \x01(\t\x12\x0e\n\x06genero\x18\x02 \x01(\t\x12\x0f\n\x07sinopse\x18\x03 \x01(\t\x12\x16\n\x0e\x61no_lancamento\x18\x04 \x01(\x05\x12\x17\n\x0fidioma_original\x18\x05 \x01(\t2\x93\x01\n\x11InfosLivroService\x12<\n\x07\x46indAll\x12\x16.catalogo.EmptyRequest\x1a\x19.catalogo.FindAllResponse\x12@\n\rGetInfosLivro\x12\x16.catalogo.LivroRequest\x1a\x17.catalogo.InfosResponseb\x06proto3')
 
 _globals = globals()
 _builder.BuildMessageAndEnumDescriptors(DESCRIPTOR, _globals)
 _builder.BuildTopDescriptorsAndMessages(DESCRIPTOR, 'catalogo_pb2', _globals)
 if not _descriptor._USE_C_DESCRIPTORS:
   DESCRIPTOR._loaded_options = None
-  _globals['_LIVROREQUEST']._serialized_start=28
-  _globals['_LIVROREQUEST']._serialized_end=60
-  _globals['_INFOSRESPONSE']._serialized_start=62
-  _globals['_INFOSRESPONSE']._serialized_end=175
-  _globals['_INFOSLIVROSERVICE']._serialized_start=177
-  _globals['_INFOSLIVROSERVICE']._serialized_end=262
+  _globals['_EMPTYREQUEST']._serialized_start=28
+  _globals['_EMPTYREQUEST']._serialized_end=42
+  _globals['_LIVRORESUMO']._serialized_start=44
+  _globals['_LIVRORESUMO']._serialized_end=91
+  _globals['_FINDALLRESPONSE']._serialized_start=93
+  _globals['_FINDALLRESPONSE']._serialized_end=149
+  _globals['_LIVROREQUEST']._serialized_start=151
+  _globals['_LIVROREQUEST']._serialized_end=183
+  _globals['_INFOSRESPONSE']._serialized_start=185
+  _globals['_INFOSRESPONSE']._serialized_end=298
+  _globals['_INFOSLIVROSERVICE']._serialized_start=301
+  _globals['_INFOSLIVROSERVICE']._serialized_end=448
 # @@protoc_insertion_point(module_scope)

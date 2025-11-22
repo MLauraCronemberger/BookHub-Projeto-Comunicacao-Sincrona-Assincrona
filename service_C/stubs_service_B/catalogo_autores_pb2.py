@@ -24,7 +24,7 @@ _sym_db = _symbol_database.Default()
 
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n6stubs_service_B/proto_service_B/catalogo_autores.proto\x12\x10\x63\x61talogo_autores\" \n\x0c\x41utorRequest\x12\x10\n\x08livro_id\x18\x01 \x01(\t\"i\n\rAutorResponse\x12\x12\n\nnome_autor\x18\x01 \x01(\t\x12\x13\n\x0bidade_autor\x18\x02 \x01(\x05\x12\x15\n\rnacionalidade\x18\x03 \x01(\t\x12\x18\n\x10obras_conhecidas\x18\x04 \x03(\t2`\n\x0c\x41utorService\x12P\n\rGetInfosAutor\x12\x1e.catalogo_autores.AutorRequest\x1a\x1f.catalogo_autores.AutorResponseb\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n6stubs_service_B/proto_service_B/catalogo_autores.proto\x12\x10\x63\x61talogo_autores\" \n\x0c\x41utorRequest\x12\x10\n\x08livro_id\x18\x01 \x01(\x05\"i\n\rAutorResponse\x12\x12\n\nnome_autor\x18\x01 \x01(\t\x12\x13\n\x0bidade_autor\x18\x02 \x01(\x05\x12\x15\n\rnacionalidade\x18\x03 \x01(\t\x12\x18\n\x10obras_conhecidas\x18\x04 \x03(\t2`\n\x0c\x41utorService\x12P\n\rGetInfosAutor\x12\x1e.catalogo_autores.AutorRequest\x1a\x1f.catalogo_autores.AutorResponseb\x06proto3')
 
 _globals = globals()
 _builder.BuildMessageAndEnumDescriptors(DESCRIPTOR, _globals)

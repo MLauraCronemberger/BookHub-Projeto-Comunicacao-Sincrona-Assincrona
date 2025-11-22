@@ -7,7 +7,7 @@ service AutorService {
 }
 
 message AutorRequest {
-  string livro_id = 1;
+  int32 livro_id = 1;
 }
 
 // 2. Mensagem de Response para o Serviço B
