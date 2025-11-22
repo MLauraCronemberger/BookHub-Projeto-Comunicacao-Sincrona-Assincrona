@@ -34,6 +34,11 @@ class InfosLivroServiceStub(object):
         Args:
             channel: A grpc.Channel.
         """
+        self.FindAll = channel.unary_unary(
+                '/catalogo.InfosLivroService/FindAll',
+                request_serializer=catalogo__pb2.EmptyRequest.SerializeToString,
+                response_deserializer=catalogo__pb2.FindAllResponse.FromString,
+                _registered_method=True)
         self.GetInfosLivro = channel.unary_unary(
                 '/catalogo.InfosLivroService/GetInfosLivro',
                 request_serializer=catalogo__pb2.LivroRequest.SerializeToString,
@@ -44,6 +49,12 @@ class InfosLivroServiceStub(object):
 class InfosLivroServiceServicer(object):
     """Missing associated documentation comment in .proto file."""
 
+    def FindAll(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
     def GetInfosLivro(self, request, context):
         """Missing associated documentation comment in .proto file."""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
@@ -53,6 +64,11 @@ class InfosLivroServiceServicer(object):
 
 def add_InfosLivroServiceServicer_to_server(servicer, server):
     rpc_method_handlers = {
+            'FindAll': grpc.unary_unary_rpc_method_handler(
+                    servicer.FindAll,
+                    request_deserializer=catalogo__pb2.EmptyRequest.FromString,
+                    response_serializer=catalogo__pb2.FindAllResponse.SerializeToString,
+            ),
             'GetInfosLivro': grpc.unary_unary_rpc_method_handler(
                     servicer.GetInfosLivro,
                     request_deserializer=catalogo__pb2.LivroRequest.FromString,
@@ -68,6 +84,33 @@ def add_InfosLivroServiceServicer_to_server(servicer, server):
  # This class is part of an EXPERIMENTAL API.
 class InfosLivroService(object):
     """Missing associated documentation comment in .proto file."""
+
+    @staticmethod
+    def FindAll(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(
+            request,
+            target,
+            '/catalogo.InfosLivroService/FindAll',
+            catalogo__pb2.EmptyRequest.SerializeToString,
+            catalogo__pb2.FindAllResponse.FromString,
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+            _registered_method=True)
 
     @staticmethod
     def GetInfosLivro(request,

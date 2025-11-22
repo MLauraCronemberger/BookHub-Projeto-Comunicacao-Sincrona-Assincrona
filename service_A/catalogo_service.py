@@ -55,26 +55,36 @@ LIVROS = {
 }
 
 # CÓDIGO CORRIGIDO (DENTRO DE catalogo_service.py)
+    
+class CatalogoLivrosService(catalogo_pb2_grpc.InfosLivroServiceServicer):
 
-class CatalogoLivrosService(catalogo_pb2_grpc.InfosLivroService):
+    def FindAll(self, request, context):
+        response = catalogo_pb2.FindAllResponse()
+
+        for id_livro, dados in LIVROS.items():
+            resumo = catalogo_pb2.LivroResumo(
+                livro_id=id_livro,
+                titulo=dados["titulo"]
+            )
+            response.livros.append(resumo)
+
+        return response
+    
     def GetInfosLivro(self, request, context):
-        try:
-            # Converte a string do gRPC para INT para buscar no dicionário
-            livro_id_int = int(request.livro_id) 
-        except ValueError:
-            context.set_details("ID de livro inválido: deve ser um número inteiro.")
+        livro_id = request.livro_id
+
+        if livro_id <= 0:
+            context.set_details("ID de livro inválido: deve ser um número positivo.")
             context.set_code(grpc.StatusCode.INVALID_ARGUMENT)
             return catalogo_pb2.InfosResponse()
-            
-        # Busca usando o INT
-        livro = LIVROS.get(livro_id_int)
+
+        livro = LIVROS.get(livro_id)
         
         if not livro:
             context.set_details("Livro não encontrado, tente novamente.")
             context.set_code(grpc.StatusCode.NOT_FOUND)
-            return catalogo_pb2.InfosResponse() 
+            return catalogo_pb2.InfosResponse()
             
-        # ⚠️ CORREÇÃO AQUI: REMOVENDO 'livro_id' do objeto de resposta
         return catalogo_pb2.InfosResponse(
             titulo= livro["titulo"], 
             genero= livro["genero"], 
