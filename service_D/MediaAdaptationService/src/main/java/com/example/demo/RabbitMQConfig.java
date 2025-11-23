@@ -1,27 +1,53 @@
 package com.example.demo;
-
+import org.springframework.amqp.core.Message;
+import org.springframework.amqp.core.MessageProperties;
 import org.springframework.amqp.core.Queue;
-import org.springframework.amqp.rabbit.core.RabbitTemplate;
+import org.springframework.amqp.rabbit.annotation.EnableRabbit;
+import org.springframework.amqp.rabbit.config.SimpleRabbitListenerContainerFactory;
+import org.springframework.amqp.rabbit.connection.ConnectionFactory; // IMPORTANTE: o do Spring
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-import com.rabbitmq.client.ConnectionFactory;
-
-
-
 @Configuration
+@EnableRabbit
 public class RabbitMQConfig {
 
-    // 1. Injeta o nome da fila definido em application.properties
     @Value("${queue.name}")
     private String queueName;
 
     @Bean
     public Queue queue() {
-        // 2. Cria e declara a fila no RabbitMQ.
-        // O valor 'true' indica que a fila é durável (permanece após reinicialização do RabbitMQ).
-        return new Queue(queueName, true); 
+        return new Queue(queueName, true);
     }
-    
+
+    @Bean
+    public SimpleRabbitListenerContainerFactory rabbitListenerContainerFactory(
+            ConnectionFactory connectionFactory) {
+
+        SimpleRabbitListenerContainerFactory factory =
+                new SimpleRabbitListenerContainerFactory();
+
+        factory.setConnectionFactory(connectionFactory);
+
+        
+        // foi preciso criar um converter para fazer contentType.startsWith("text")...
+        // pq isso vem nulo quando publica mensagem pelo painel do rabbit
+        factory.setMessageConverter(new SafeSimpleMessageConverter());
+
+        
+        // resolve o problema inicial do "priority nulo"
+        factory.setAfterReceivePostProcessors((Message message) -> {
+            MessageProperties props = message.getMessageProperties();
+            if (props != null) {
+                if (props.getPriority() == null) {
+                    props.setPriority(0);
+                }
+            }
+            return message;
+        });
+
+        return factory;
+    }
 }
+
