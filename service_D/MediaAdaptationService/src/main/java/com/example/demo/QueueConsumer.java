@@ -18,7 +18,7 @@ public class QueueConsumer {
     public void receive(@Payload MediaAdaptation nova_adaptacao) {
     	service.salvar_adaptacao(nova_adaptacao);
     	
-        System.out.println("Nova Adaptacao do Livro:" + nova_adaptacao.getLivro_id() + "acabou de ser registrada!");
+        System.out.println("Nova Adaptacao Registrada:" + nova_adaptacao.getDescricao());
     }
 
 }
