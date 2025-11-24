@@ -16,6 +16,7 @@ import org.springframework.amqp.core.Queue;
 @EnableRabbit
 public class RabbitMQConfig {
 
+//ServicoD	
     @Value("${queue.name}")
     private String queueName;
 
@@ -24,6 +25,28 @@ public class RabbitMQConfig {
 
     @Value("${routing.key}")
     private String routingKey;
+
+//ServicoE
+    @Value("${queue.name.serviceE}")
+    private String queueNameServiceE;
+
+    @Value("${exchange.name.serviceE}")
+    private String exchangeNameServiceE;
+
+    @Value("${routing.key.serviceE}")
+    private String routingKeyServiceE;
+
+//ServicoF
+    @Value("${queue.name.serviceF}")
+    private String queueNameServiceF;
+
+    @Value("${exchange.name.serviceF}")
+    private String exchangeNameServiceF;
+
+    @Value("${routing.key.serviceF}")
+    private String routingKeyServiceF;
+
+    //Enviar fila servico D
 
     @Bean
     public Queue queue() {
@@ -39,6 +62,42 @@ public class RabbitMQConfig {
     public Binding binding(Queue queue, DirectExchange exchange) {
         return BindingBuilder.bind(queue).to(exchange).with(routingKey);
     }
+
+    //Enviar fila servico E
+
+    @Bean
+    public Queue queueServiceE() {
+        return new Queue(queueNameServiceE, true);
+    }
+
+    @Bean
+    public DirectExchange exchangeServiceE() {
+        return new DirectExchange(exchangeNameServiceE);
+    }
+
+    @Bean
+    public Binding bindingServiceE(Queue queueServiceE, DirectExchange exchangeServiceE) {
+        return BindingBuilder.bind(queueServiceE).to(exchangeServiceE).with(routingKeyServiceE);
+    }
+
+    //Enviar fila servico F
+
+    @Bean
+    public Queue queueServiceF() {
+        return new Queue(queueNameServiceF, true);
+    }
+
+    @Bean
+    public DirectExchange exchangeServiceF() {
+        return new DirectExchange(exchangeNameServiceF);
+    }
+
+    @Bean
+    public Binding bindingServiceF(Queue queueServiceF, DirectExchange exchangeServiceF) {
+        return BindingBuilder.bind(queueServiceF).to(exchangeServiceF).with(routingKeyServiceF);
+    }
+
+    //Conversor e Rabbit
 
     @Bean
     public Jackson2JsonMessageConverter jacksonConverter() {

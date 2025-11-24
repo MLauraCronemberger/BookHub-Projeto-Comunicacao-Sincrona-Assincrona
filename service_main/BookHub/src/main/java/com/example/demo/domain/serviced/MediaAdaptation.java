@@ -44,11 +44,4 @@ public class MediaAdaptation {
 		this.tipo_adaptacao = tipo_adaptacao;
 		this.descricao = descricao;
 	}
-	
-
-	
-	
-	
-
 }
-

@@ -6,7 +6,6 @@ import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
-import com.example.demo.config.ServiceCFeignClient;
 import com.example.demo.config.ServiceDFeignClient;
 import com.example.demo.domain.serviced.MediaAdaptation;
 
@@ -37,9 +36,5 @@ public class ServiceD {
 	public List<MediaAdaptation> listar_noticias(){
 		return Dclient.listar_noticias();
 	}
-    
-
-	
-
 
 }

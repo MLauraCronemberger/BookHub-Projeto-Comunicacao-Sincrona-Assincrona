@@ -6,8 +6,8 @@ import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
-import com.example.demo.domain.servicec.AllLivros;
-import com.example.demo.domain.servicec.InfoLivroResponse;
+import com.example.demo.domain.serviceC.AllLivros;
+import com.example.demo.domain.serviceC.InfoLivroResponse;
 
 @FeignClient(name= "service-c-api", url="http://localhost:8000")
 public interface ServiceCFeignClient {

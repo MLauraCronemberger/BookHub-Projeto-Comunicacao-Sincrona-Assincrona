@@ -7,8 +7,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.demo.domain.servicec.AllLivros;
-import com.example.demo.domain.servicec.InfoLivroResponse;
+import com.example.demo.domain.serviceC.AllLivros;
+import com.example.demo.domain.serviceC.InfoLivroResponse;
 import com.example.demo.service.ServiceC;
 
 @RestController
