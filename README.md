@@ -42,7 +42,7 @@ A proposta era criar um álbum de figurinhas distribuído, onde:
 | **B** | Node.js | Síncrono (gRPC) | Retorna informações sobre autores (dados mockados) |
 | **C** | Python | Ponte (gRPC + REST) | Consome A e B por gRPC e expõe dados ao Main via REST |
 | **D** | Java/Spring Boot | Assíncrono (RabbitMQ) | Armazena e fornece notícias de adaptações literárias |
-| **E** | Java/Spring Boot | Assíncrono (RabbitMQ) | Gerencia notícias de autores |
+| **E** | Java/Spring Boot | Assíncrono (RabbitMQ) | Armazena e fornece notícias dos autores |
 | **F** | Java/Spring Boot | Assíncrono (RabbitMQ) | Contabiliza pesquisas sobre livros |
 | **Main** | Java/Spring Boot | Central | Consolida dados síncronos e assíncronos, fornece API ao front |
 
