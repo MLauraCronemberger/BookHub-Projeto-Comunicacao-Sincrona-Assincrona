@@ -5,8 +5,8 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.config.ServiceCFeignClient;
-import com.example.demo.domain.serviceC.AllLivros;
-import com.example.demo.domain.serviceC.InfoLivroResponse;
+import com.example.demo.domain.servicec.AllLivros;
+import com.example.demo.domain.servicec.InfoLivroResponse;
 
 @Service
 public class ServiceC {

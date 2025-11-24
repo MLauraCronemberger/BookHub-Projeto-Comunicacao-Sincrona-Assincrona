@@ -1,4 +1,4 @@
-package com.example.demo.domain.serviceC;
+package com.example.demo.domain.servicec;
 
 import java.util.List;
 

@@ -14,6 +14,7 @@ import com.example.demo.domain.serviceE.AuthorNews;
 import com.example.demo.domain.serviced.MediaAdaptation;
 import com.example.demo.service.ServiceD;
 import com.example.demo.service.ServiceE;
+import com.example.demo.service.ServiceF;
 
 @RestController
 @RequestMapping("/assync")
@@ -24,6 +25,9 @@ public class AssyncController {
 	
 	@Autowired
 	private ServiceE serviceE;
+	
+	@Autowired
+	private ServiceF serviceF;
 	
     @PostMapping("/nova-adaptacao")
     public ResponseEntity<String> criarNoticia(@RequestBody MediaAdaptation nova_adaptacao) {
@@ -45,6 +49,11 @@ public class AssyncController {
     @GetMapping("/todas-noticias-registradas")
     public List<AuthorNews> listar_noticias(){
     	return serviceE.listar_noticias();
+    }
+    
+    @GetMapping("/contador")
+	public int getContador() {
+    	return serviceF.getContador();
     }
 	
 }
