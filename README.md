@@ -286,6 +286,6 @@ O serviço Main centraliza e disponibiliza:
 
 <div align="center">
 
-**Desenvolvido com 💙 para fins acadêmicos**
+**Desenvolvido para fins acadêmicos**
 
 </div>
