@@ -17,8 +17,8 @@ import com.example.demo.service.ServiceE;
 import com.example.demo.service.ServiceF;
 
 @RestController
-@RequestMapping("/assync")
-public class AssyncController {
+@RequestMapping("/async")
+public class AsyncController {
 	
 	@Autowired
 	private ServiceD serviceD;
