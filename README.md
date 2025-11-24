@@ -242,10 +242,12 @@ O Main expõe todas as APIs do BookHub.
 ### 5.5. Iniciar o Front-end
 
 ```bash
+npm i
 npm run dev
 ```
 
-*Repositório do front-end separado: Front-Bookhub*
+*Repositório do front-end separado:* [Front-BookHub](https://github.com/MLauraCronemberger/Front-Bookhub)
+
 
 ---
 
